@@ -255,7 +255,7 @@
           <div class="content">
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+            <span class="preheader">{% block preheader %}Hello from Acme, Inc. {% endblock %}</span>
             <table class="main">
 
             {% block content %}{% endblock %}
