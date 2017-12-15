@@ -1,11 +1,18 @@
+
+let nodemailer = require('nodemailer');
 /**
 * A test mail function
 * @bg params
 * @param {string} type of mail to be sent
+* @param {string} subject for the email
+* @param {object} data mail data options
 * @returns {string}
 */
-module.exports = (type = "test", context, callback) => {
-	console.log(context);
+module.exports = (type = "test", subject, data, context, callback) => {
+	console.log(data);
+    console.log("##########");
+    console.log(context.params);
+
 	// Generate test SMTP service account from ethereal.email
 	// Only needed if you don't have a real mail account for testing
 	nodemailer.createTestAccount((err, account) => {

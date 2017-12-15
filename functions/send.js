@@ -17,15 +17,15 @@ module.exports = (type = "test", to, context, callback) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: process.env.mail_user, // generated ethereal user
-            pass: process.env.mail_pass  // generated ethereal password
+            user: process.env.mail_user, 
+            pass: process.env.mail_pass 
         }
     });
 	
     // setup email data with unicode symbols
     let mailOptions = {
         from: '"Shiv" <shiv@posted.news>', // sender address
-        to: , // list of receivers
+        to: to, // list of receivers
         subject: 'Hello Test from maildawg', // Subject line
         text: 'Hello world?', // plain text body
         html: '<b>Hello world bruh </b>' // html body
