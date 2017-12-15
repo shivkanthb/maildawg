@@ -1,5 +1,9 @@
 
 let nodemailer = require('nodemailer');
+const swig = require('swig');
+const juice = require('juice');
+let tmplpath = __dirname + '/../tmpl/reset.html';
+
 /**
 * A test mail function
 * @bg params
@@ -12,7 +16,8 @@ module.exports = (type = "test", subject, data, context, callback) => {
 	console.log(data);
     console.log("##########");
     console.log(context.params);
-
+    var htmlOutput = swig.renderFile(tmplpath, {});
+    var inlinedHTML = juice(htmlOutput);
 	// Generate test SMTP service account from ethereal.email
 	// Only needed if you don't have a real mail account for testing
 	nodemailer.createTestAccount((err, account) => {
@@ -31,10 +36,10 @@ module.exports = (type = "test", subject, data, context, callback) => {
 	    // setup email data with unicode symbols
 	    let mailOptions = {
 	        from: '"Fred Foo 👻" <foo@blurdybloop.com>', // sender address
-	        to: 'aarmusk@gmail.com', // list of receivers
-	        subject: 'Hello Test from maildawg', // Subject line
+	        to: data.to, // list of receivers
+	        subject: subject, // Subject line
 	        text: 'Hello world?', // plain text body
-	        html: '<b>Hello world?</b>' // html body
+	        html: inlinedHTML // html body
 	    };
 
 	    // send mail with defined transport object

@@ -5,7 +5,9 @@
   "author": "shivkanthb <shivkanthb@live.com>",
   "main": "functions/__main__.js",
   "dependencies": {
-    "nodemailer": "^4.4.1"
+    "juice": "^4.2.2",
+    "nodemailer": "^4.4.1",
+    "swig": "^1.4.2"
   },
   "private": true,
   "stdlib": {
