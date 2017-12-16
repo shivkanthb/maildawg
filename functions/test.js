@@ -2,20 +2,27 @@
 let nodemailer = require('nodemailer');
 const swig = require('swig');
 const juice = require('juice');
-let tmplpath = __dirname + '/../tmpl/reset.html';
 
 /**
 * A test mail function
 * @bg params
 * @param {string} type of mail to be sent
-* @param {string} subject for the email
+* @param {string} to recepient address
+* @param {string} subject of the mail
 * @param {object} data mail data options
 * @returns {string}
 */
-module.exports = (type = "test", subject, data, context, callback) => {
+module.exports = (type = "test", to, subject, data={}, context, callback) => {
 	console.log(data);
     console.log("##########");
     console.log(context.params);
+    let tmplpath = __dirname + '/../tmpl/';
+    if (type === "reset") {
+        tmplpath = tmplpath + 'reset.html';
+    } else if (type == 'welcome') {
+        tmplpath = tmplpath + 'welcome.html';
+    }
+
     var htmlOutput = swig.renderFile(tmplpath, {});
     var inlinedHTML = juice(htmlOutput);
 	// Generate test SMTP service account from ethereal.email
@@ -35,8 +42,8 @@ module.exports = (type = "test", subject, data, context, callback) => {
 
 	    // setup email data with unicode symbols
 	    let mailOptions = {
-	        from: '"Fred Foo 👻" <foo@blurdybloop.com>', // sender address
-	        to: data.to, // list of receivers
+	        from: '"Shiv from Acme" <shiv@posted.news>', // sender address
+	        to: to, // list of receivers
 	        subject: subject, // Subject line
 	        text: 'Hello world?', // plain text body
 	        html: inlinedHTML // html body

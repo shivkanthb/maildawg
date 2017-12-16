@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block preheader %}Greetings from Acme Inc.{% endblock %}
+{% block content %}
+<!-- START MAIN CONTENT AREA -->
+  <tr>
+    <td class="wrapper">
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            <p>Hello,</p>
+            <p>I really appreciate you signing up for Acme, and I'm sure you'll love it when you see how easy it is to get the right things done.</p>
+            <p>Ok, it’s true; this is an automated email, but if you have any questions simply reply to this email and I'd be more than happy to chat. :)</p>
+            <p>Cheers, <br/>Team Acme</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+<!-- END MAIN CONTENT AREA -->
+{% endblock %}
+
+{% block footer %}
+{% include 'footer.html' %}
+{% endblock %}

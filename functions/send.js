@@ -5,7 +5,7 @@ const juice = require('juice');
 
 /**
 * A send function
-* @bg empty
+* @bg params
 * @param {string} type of mail to be sent
 * @param {string} to recepient address
 * @param {string} subject of the mail
@@ -16,6 +16,8 @@ module.exports = (type = "test", to, subject, data={}, context, callback) => {
 
     let tmplpath = __dirname + '/../tmpl/';
     if (type === "reset") {
+        tmplpath = tmplpath + 'reset.html';
+    } else {
         tmplpath = tmplpath + 'reset.html';
     }
 
@@ -46,6 +48,6 @@ module.exports = (type = "test", to, subject, data={}, context, callback) => {
 	        return console.log(error);
 	    }
 	    console.log('Message sent: %s', info.messageId);
-	    callback(null, `Send mail call done`);
+	    callback(null, `Send mail call complete`);
     });
 };
