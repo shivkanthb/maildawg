@@ -1,7 +1,8 @@
 
-let nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 const swig = require('swig');
 const juice = require('juice');
+const htmlToText = require('html-to-text');
 
 /**
 * A test mail function
@@ -19,12 +20,14 @@ module.exports = (type = "test", to, subject, data={}, context, callback) => {
     let tmplpath = __dirname + '/../tmpl/';
     if (type === "reset") {
         tmplpath = tmplpath + 'reset.html';
-    } else if (type == 'welcome') {
+    } else if (type === 'welcome') {
         tmplpath = tmplpath + 'welcome.html';
     }
 
-    var htmlOutput = swig.renderFile(tmplpath, {});
+    var htmlOutput = swig.renderFile(tmplpath, { data });
+    var mailtext = htmlToText.fromString(htmlOutput, { wordwrap: 130 });
     var inlinedHTML = juice(htmlOutput);
+
 	// Generate test SMTP service account from ethereal.email
 	// Only needed if you don't have a real mail account for testing
 	nodemailer.createTestAccount((err, account) => {
@@ -43,9 +46,9 @@ module.exports = (type = "test", to, subject, data={}, context, callback) => {
 	    // setup email data with unicode symbols
 	    let mailOptions = {
 	        from: '"Shiv from Acme" <shiv@posted.news>', // sender address
-	        to: to, // list of receivers
+	        to: to, // list of receivers seperated by comma
 	        subject: subject, // Subject line
-	        text: 'Hello world?', // plain text body
+	        text: mailtext, // plain text body
 	        html: inlinedHTML // html body
 	    };
 

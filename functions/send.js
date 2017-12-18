@@ -2,6 +2,7 @@
 const nodemailer = require('nodemailer');
 const swig = require('swig');
 const juice = require('juice');
+const htmlToText = require('html-to-text');
 
 /**
 * A send function
@@ -17,11 +18,12 @@ module.exports = (type = "test", to, subject, data={}, context, callback) => {
     let tmplpath = __dirname + '/../tmpl/';
     if (type === "reset") {
         tmplpath = tmplpath + 'reset.html';
-    } else {
-        tmplpath = tmplpath + 'reset.html';
+    } else if (type === "welcome") {
+        tmplpath = tmplpath + 'welcome.html';
     }
 
-    var htmlOutput = swig.renderFile(tmplpath, {});
+    var htmlOutput = swig.renderFile(tmplpath, { data });
+    var mailtext = htmlToText.fromString(htmlOutput, { wordwrap: 130 }); // For browsers/settings that doesn't support HTML mails
     var inlinedHTML = juice(htmlOutput);
 
 	let transporter = nodemailer.createTransport({
@@ -39,7 +41,7 @@ module.exports = (type = "test", to, subject, data={}, context, callback) => {
         from: '"Shiv" <shiv@posted.news>', // sender address
         to: to, 
         subject: subject, 
-        text: 'Hello world?', 
+        text: mailtext, 
         html: inlinedHTML // html body
     };
 

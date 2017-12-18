@@ -5,6 +5,7 @@
   "author": "shivkanthb <shivkanthb@live.com>",
   "main": "functions/__main__.js",
   "dependencies": {
+    "html-to-text": "^3.3.0",
     "juice": "^4.2.2",
     "nodemailer": "^4.4.1",
     "swig": "^1.4.2"
