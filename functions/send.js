@@ -13,13 +13,17 @@ const htmlToText = require('html-to-text');
 * @param {object} data mail data options
 * @returns {string}
 */
-module.exports = (type = "test", to, subject, data={}, context, callback) => {
+module.exports = (type = "welcome", to, subject, data={}, context, callback) => {
 
     let tmplpath = __dirname + '/../tmpl/';
     if (type === "reset") {
         tmplpath = tmplpath + 'reset.html';
     } else if (type === "welcome") {
         tmplpath = tmplpath + 'welcome.html';
+    } else if (type === "alert") {
+        tmplpath = tmplpath + 'alert.html';
+    } else {
+        callback(new Error("Choose a valid email template"));
     }
 
     var htmlOutput = swig.renderFile(tmplpath, { data });
@@ -38,7 +42,7 @@ module.exports = (type = "test", to, subject, data={}, context, callback) => {
     });
 	
     let mailOptions = {
-        from: '"Shiv" <shiv@posted.news>', // sender address
+        from: '"Shiv from Acme" <shiv@posted.news>', // sender address
         to: to, 
         subject: subject, 
         text: mailtext, 
