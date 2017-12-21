@@ -1,10 +1,19 @@
 ### Mail Dawg 🐶
 <p>is a simple service for sending emails from your app. Primarily intended for sending welcome emails, alerts, password reset, verify account emails etc.</p>
-<p>Comes with a really simple responsive HTML email template.</p>
- 
-#### Getting Started
-To use the mail dawg service for your own app, simply create a service from the source to your stdlib account.</p><p> Its super simple to run the service as a bg worker with Stdlib - just append `:bg` to the `send` endpoint.
-[Fork Source](https://stdlib.com/@shivkanthb/src/maildawg/)
+<p>Comes with a really simple responsive HTML email template.</p> 
+
+
+#### Endpoints
+##### send
+This function is for sending emails. 
+Params:
+1. type - type of email template (welcome, reset, alert)
+2. to - email address of the receiver 
+3. subject - subject of the email
+4. data - object containing additional context info for the templates. Eg - field `reset_url` for `reset` email template
+
+##### test
+Use it for testing your emails. Send an email using the test account (created on the fly) just as you would with any other SMTP provider and preview the sent message here as no emails are actually delivered. Useful for debugging. 
 
 #### Usage
 Feel free to modify the templates (inside `tmpl`) as you wish. 
