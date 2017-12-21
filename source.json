@@ -1,0 +1,28 @@
+{
+  "name": "@shivkanthb/maildawg",
+  "version": "0.0.0",
+  "publish": true,
+  "description": "",
+  "env": [
+    {
+      "name": "nodemailer_source",
+      "defaultValue": "",
+      "description": ""
+    },
+    {
+      "name": "nodemailer_host",
+      "defaultValue": "",
+      "description": ""
+    },
+    {
+      "name": "nodemailer_user",
+      "defaultValue": "",
+      "description": ""
+    },
+    {
+      "name": "nodemailer_pass",
+      "defaultValue": "",
+      "description": ""
+    }
+  ]
+}

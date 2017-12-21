@@ -1,0 +1,104 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Mail dawg</title>
+  <style>
+    body {
+      font-size: 14px;
+      line-height: 24px;
+      /*background: #eff7ff;*/
+      background: #F7F8FB;
+      /*background: #FEF3FC;*/
+      /*background: #022;*/
+      color: #022;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    div.container {
+      width: 620px;
+      margin: 50px 0 50px 50px;
+    }
+    p, li {
+      margin: 16px 0 16px 0;
+      width: 550px;
+    }
+      p.break {
+        margin-top: 35px;
+      }
+    a, a:visited {
+      color: #FEF3FC;
+      text-decoration: none;
+      border-bottom: 2px solid darkgreen;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 40px;
+    }
+    b.header {
+      font-size: 18px;
+    }
+    span.alias {
+      font-size: 14px;
+      font-style: italic;
+      margin-left: 20px;
+    }
+    code, pre, tt {
+      font-family: monospace;
+      font-size: 12px;
+      line-height: 18px;
+      color: #444;
+    }
+      code {
+        margin-left: 20px;
+      }
+      pre {
+        font-size: 12px;
+        padding: 2px 0 2px 12px;
+        /*border-left: 6px solid #55aaaa;*/
+        margin: 0px 0 10px;
+
+        padding: 16px;
+        background-color: #f6f8fa;
+        background-color: #022;
+        color: #f6f8fa;
+        border-radius: 3px;
+}
+      }
+        li pre {
+          padding: 0;
+          border-left: 0;
+          margin: 6px 0 6px 0;
+        }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h2>Mail dawg <sub style="font-size:150%;">🐶</sub></h2>
+
+    <p>
+      <a href="">Mail dawg</a>
+      is a simple service for sending emails from your app built on 
+      <a href="https://stdlib.com">StdLib</a>.
+    </p>
+    
+    <h3 id="usage">Usage</h3>
+
+    <p>
+      To use the mail dawg service for your own app, simply create a service from the source to your stdlib account. 
+    </p>
+    <pre>
+const lib = require('lib')
+
+let data = {
+  to: "bob@gmail.com",
+  type: "welcome",
+  subject: "Welcome to Acme"
+}
+lib({ bg: true }).shivkanthb.maildawg.send(data, function(err, response) {});
+</pre>
+
+</body>
+</html>

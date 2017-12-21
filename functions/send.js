@@ -31,13 +31,13 @@ module.exports = (type = "welcome", to, subject, data={}, context, callback) => 
     var inlinedHTML = juice(htmlOutput);
 
 	let transporter = nodemailer.createTransport({
-		service: process.env.mail_source,
-        host: process.env.mail_host,
+		service: process.env.nodemailer_source,
+        host: process.env.nodemailer_host,
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            user: process.env.mail_user, 
-            pass: process.env.mail_pass 
+            user: process.env.nodemailer_user, 
+            pass: process.env.nodemailer_pass 
         }
     });
 	
