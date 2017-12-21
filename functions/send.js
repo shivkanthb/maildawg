@@ -23,7 +23,7 @@ module.exports = (type = "welcome", to, subject, data={}, context, callback) => 
     } else if (type === "alert") {
         tmplpath = tmplpath + 'alert.html';
     } else {
-        callback(new Error("Choose a valid email template"));
+        return callback(new Error("Choose a valid email template"));
     }
 
     var htmlOutput = swig.renderFile(tmplpath, { data });

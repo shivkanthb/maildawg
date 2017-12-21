@@ -11,8 +11,9 @@
       line-height: 24px;
       /*background: #eff7ff;*/
       background: #F7F8FB;
-      /*background: #FEF3FC;*/
+      background: #FEF3FC;
       /*background: #022;*/
+      background: #FFF;
       color: #022;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
@@ -22,28 +23,20 @@
     }
     p, li {
       margin: 16px 0 16px 0;
-      width: 550px;
+      width: 600px;
     }
       p.break {
         margin-top: 35px;
       }
     a, a:visited {
-      color: #FEF3FC;
+      /*color: #FEF3FC;*/
       text-decoration: none;
       border-bottom: 2px solid darkgreen;
     }
     h1, h2, h3, h4, h5, h6 {
       margin-top: 40px;
     }
-    b.header {
-      font-size: 18px;
-    }
-    span.alias {
-      font-size: 14px;
-      font-style: italic;
-      margin-left: 20px;
-    }
-    code, pre, tt {
+    code, pre {
       font-family: monospace;
       font-size: 12px;
       line-height: 18px;
@@ -60,8 +53,8 @@
 
         padding: 16px;
         background-color: #f6f8fa;
-        background-color: #022;
-        color: #f6f8fa;
+        /*background-color: #022;*/
+        /*color: #f6f8fa;*/
         border-radius: 3px;
 }
       }
@@ -70,6 +63,28 @@
           border-left: 0;
           margin: 6px 0 6px 0;
         }
+
+      a.clone {
+        font-weight: 500;
+        display: block;
+        width: 156px;
+        padding: 1.25rem 1rem;
+        cursor: pointer;
+        letter-spacing: 1px;
+        justify-content: center;
+        line-height: 15px;
+        color: #FFF;
+        background-color: #022;
+        text-align: center;
+        text-decoration: none;
+        border: none;
+        box-shadow: 0 3px 6px rgba(48, 58, 82, 0.2);
+        border-radius: 5px;
+        margin-bottom: 30px;
+      }
+      a.clone:hover {
+        box-shadow: 0 6px 12px rgba(48, 58, 82, 0.2);
+      }
   </style>
 </head>
 <body>
@@ -80,25 +95,50 @@
 
     <p>
       <a href="">Mail dawg</a>
-      is a simple service for sending emails from your app built on 
-      <a href="https://stdlib.com">StdLib</a>.
+      is a simple service for sending emails from your app. Primarily intended for sending welcome emails, alerts, password reset, verify account emails etc.
     </p>
+    <p>Comes with a really simple responsive and inlined HTML email template.</p>
     
-    <h3 id="usage">Usage</h3>
+    <h3 id="install">Install</h3>
 
     <p>
-      To use the mail dawg service for your own app, simply create a service from the source to your stdlib account. 
+      To use the mail dawg service for your own app, simply create a service from the source to your stdlib account.</p><p> Its super simple to run the service as a bg worker with Stdlib - just append `:bg` to the `send` endpoint.
     </p>
-    <pre>
+    <a href="" class="clone">Fork Source</a>
+
+    <h3 id="usage">Usage</h3>
+    <p>
+      Feel free to modify the templates (inside `tmpl`) as you wish. 
+    </p>
+    <ol>
+      <li>
+        Call the service from your app
+      </li>
+          <pre>
 const lib = require('lib')
 
-let data = {
+let mail_data = {
   to: "bob@gmail.com",
-  type: "welcome",
-  subject: "Welcome to Acme"
+  type: "reset",
+  subject: "Password reset",
+  data: {
+    reset_url: "your-url-with-token"
+  }
 }
-lib({ bg: true }).shivkanthb.maildawg.send(data, function(err, response) {});
+lib({bg: true}).username.maildawg.send(mail_data, (err, response) => {});
 </pre>
+      <li>
+        Access service over http
+      </li>
+          <pre>
+https://username.lib.id/maildawg/send/:bg
+</pre>
+    </ol>
 
+    <h3 id="changelog">Change Log</h3>
+    <p>0.0.1 - Latest</p>
+
+    <h3 id="thanks">Thanks</h3>
+    <p>Thanks <a href="https://stdlib.com">Stdlib</a>, <a href="https://nodemailer.com/">Node Mailer</a>, <a href="https://ethereal.email/">Ethereal Mail</a></p>
 </body>
 </html>
