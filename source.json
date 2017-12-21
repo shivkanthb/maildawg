@@ -1,17 +1,17 @@
 {
   "name": "@shivkanthb/maildawg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publish": true,
   "description": "A simple service for sending beautiful responsive emails from your app.",
   "env": [
     {
       "name": "nodemailer_source",
-      "defaultValue": "gmail",
+      "defaultValue": "",
       "description": "Examples - Gmail, Zoho, Yahoo etc"
     },
     {
       "name": "nodemailer_host",
-      "defaultValue": "smtp.gmail.com",
+      "defaultValue": "",
       "description": "Examples - smtp.gmail.com, smtp.zoho.com"
     },
     {
